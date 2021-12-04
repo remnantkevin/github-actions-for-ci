@@ -5,11 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
@@ -20,6 +18,10 @@ jobs:
         run: |
           npm install
           npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: webpack-artifacts
+          path: public/
   
   test:
     strategy:
